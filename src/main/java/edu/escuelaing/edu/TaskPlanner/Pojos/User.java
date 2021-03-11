@@ -22,12 +22,12 @@ public class User {
 
     public String getEmail(){
         return this.email;
-    }
+    }   
 
     public String getPassword(){
         return this.password;
-    }
-
+    }              
+ 
     public void setName(String name){
         this.name = name;
     }
@@ -42,6 +42,6 @@ public class User {
 
     @Override
     public String toString(){
-        return "User [name=" + this.name + ", email= " + this.email + ", password= " + this.password + "]";
-    }
+        return "{name: "+ this.name + ", email: " + this.email + ", password: " + this.password + "}";
+    }   
 }

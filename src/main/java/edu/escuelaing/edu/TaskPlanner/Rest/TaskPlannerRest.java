@@ -8,6 +8,8 @@ import edu.escuelaing.edu.TaskPlanner.Services.UserServices;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,30 +24,29 @@ public class TaskPlannerRest {
     UserServices userServices;
     
     @GetMapping("/users")
-    public List<User> getAll(){
-        List<User> list =  userServices.getAll();
-        return list;
+    public ResponseEntity<?> getAll(){
+        return new ResponseEntity<>(userServices.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/user/{userId}")
-    public User getAll(@PathVariable String userId){
-        User user =  userServices.getById(userId);
-        return user;
+    public ResponseEntity<?> getAll(@PathVariable String userId){
+        return new ResponseEntity<>(userServices.getById(userId), HttpStatus.OK);
     }
 
     @PostMapping("/user")
-    public User create(@RequestBody User user){
-        return userServices.create(user);
+    public ResponseEntity<?> create(@RequestBody User user){
+        return new ResponseEntity<>(userServices.create(user), HttpStatus.OK);
     }
 
     @PutMapping("/user")
-    public User replace(@RequestBody User user){
-        return userServices.update(user);
+    public ResponseEntity<?> replace(@RequestBody User user){
+        return new ResponseEntity<>(userServices.update(user), HttpStatus.OK);
     }
 
     @DeleteMapping("/user/{userId}")
-    public void remove(@PathVariable String userId){
+    public ResponseEntity<?> remove(@PathVariable String userId){
         userServices.remove(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
 }
